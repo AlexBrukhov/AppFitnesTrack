@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AppFitnes</string>
+    <string name="slogan">На пути к совершенству!</string>
+    <string name="day">День:</string>
+    <string name="excersise">Упражнений</string>
+    <string name="waiting_message">Упражнения начнутся через:</string>
+    <string name="start">НАЧАТЬ</string>
+    <string name="next">Следующее</string>
+    <string name="done">Готово</string>
+    <string name="waiting">Приготовьтесь</string>
+    <string name="rest">Осталось:</string>
+    <string name="rest_days">дней</string>
+    <string name="reset">Сбросить</string>
+    <string name="alert">Внимание!</string>
+    <string name="back">Отмена</string>
+    <string name="reset_days_message">Вы действительно хотите сбросить все дни тренировки?</string>
+    <string name="reset_day_message">Хотите сбросить этот день и повторить упражнения?</string>
+</resources>

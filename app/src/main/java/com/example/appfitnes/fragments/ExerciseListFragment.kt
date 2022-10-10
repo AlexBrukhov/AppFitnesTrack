@@ -1,0 +1,60 @@
+package com.example.appfitnes.fragments
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.appfitnes.R
+import com.example.appfitnes.adapters.DayModel
+import com.example.appfitnes.adapters.DaysAdapter
+import com.example.appfitnes.adapters.ExerciseAdapter
+import com.example.appfitnes.databinding.ExerciseListFragmentBinding
+import com.example.appfitnes.databinding.FragmentDaysBinding
+import com.example.appfitnes.utils.FragmentManager
+import com.example.appfitnes.utils.MainViewModel
+
+class ExercisesListFragment : Fragment() {
+    private lateinit var binding: ExerciseListFragmentBinding
+    private lateinit var adapter: ExerciseAdapter
+
+    private val model: MainViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = ExerciseListFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+        model.mutableListExercise.observe(viewLifecycleOwner){
+            for(i in 0 until model.getExerciseCount()) {
+                it[i] = it[i].copy(isDone = true)
+            }
+            adapter.submitList(it)
+        }
+
+    }
+
+    private fun init() = with(binding){
+        adapter = ExerciseAdapter()
+        rcView.layoutManager = LinearLayoutManager(activity)
+        rcView.adapter = adapter
+        bStart.setOnClickListener {
+            FragmentManager.setFragment(WaitingFragment.newInstance(),
+                activity as AppCompatActivity)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = ExercisesListFragment()
+    }
+}
